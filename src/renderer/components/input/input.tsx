@@ -4,6 +4,9 @@ type InputProps = {
   type: string;
   placeholder: string;
   name: string;
+  required: boolean;
+  value: string;
+  onChange?: (e: any) => void;
 };
 
 function Input(rest: InputProps) {
