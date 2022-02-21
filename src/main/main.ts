@@ -57,10 +57,14 @@ const createWindow = async () => {
     width: 1024,
     height: 728,
     icon: getAssetPath('icon.png'),
-
     resizable: false,
     autoHideMenuBar: true,
     fullscreen: true,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      webSecurity: false,
+    },
   });
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
