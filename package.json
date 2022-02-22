@@ -37,7 +37,9 @@
     "files": [
       "dist",
       "node_modules",
-      "package.json"
+      "package.json",
+      "/assets/correct_answer.mp3",
+      "/assets/wrong_answer.mp3"
     ],
     "afterSign": ".erb/scripts/notarize.js",
     "mac": {
