@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Howl } from 'howler';
 
-import KEYBOARD_KEYS from 'renderer/utils/keyboard_keys';
-import { getAssetPath } from 'renderer/utils/assetGetter';
+import KEYBOARD_KEYS from '../utils/keyboard_keys';
+import { getAssetPath } from '../utils/assetGetter';
 
 function GamePage() {
   const navigate = useNavigate();
@@ -69,7 +69,10 @@ function GamePage() {
       // eslint-disable-next-line no-useless-return
       return;
     }
-    if (event.key === KEYBOARD_KEYS.YESIL_TAKIM) {
+    if (
+      event.key === KEYBOARD_KEYS.YESIL_TAKIM &&
+      location.state.totalUser === 3
+    ) {
       document.removeEventListener('keydown', handleKeys, false);
       setTimerStatus(false);
       setGreenTeam(true);
@@ -139,7 +142,6 @@ function GamePage() {
 
   function removePointToBlue() {
     setBlueTeamWrongCount(blueTeamWrongCount + 1);
-    setBlueTeamPoint(blueTeamPoint - 1);
     setBlueTeam(false);
     setDisableBlue(true);
     wrongAnswer.play();
@@ -150,7 +152,6 @@ function GamePage() {
 
   function removePointToRed() {
     setRedTeamWrongCount(redTeamWrongCount + 1);
-    setRedTeamPoint(redTeamPoint - 1);
     setRedTeam(false);
     setDisableRed(true);
     wrongAnswer.play();
@@ -161,7 +162,6 @@ function GamePage() {
 
   function removePointToGreen() {
     setGreenTeamWrongCount(greenTeamWrongCount + 1);
-    setGreenTeamPoint(greenTeamPoint - 1);
     setGreenTeam(false);
     setDisableGreen(true);
     wrongAnswer.play();
@@ -520,23 +520,53 @@ function GamePage() {
                       <div className="container">
                         <h1>Skor Tablosu</h1>
                       </div>
-                      <div className="container">
-                        <h3>
-                          Mavi Takım - {location.state.firstUserName} :{' '}
-                          {blueTeamPoint}
-                        </h3>
-                        {location.state.totalUser === 3 ? <hr /> : <hr />}
-                        <h3>
-                          Kırmızı Takım - {location.state.secondUserName} :{' '}
-                          {redTeamPoint}
-                        </h3>
-                        {location.state.totalUser === 3 ? <hr /> : null}
-                        {location.state.totalUser === 3 ? (
+
+                      <div>
+                        <div className="container">
+                          <h3>Mavi Takım - {location.state.firstUserName}</h3>
+                        </div>
+                        <div className="container">
                           <h3>
-                            Yeşil Takım - {location.state.thirdUserName} :
+                            Doğru: {blueTeamPoint} - Yanlış:{' '}
+                            {blueTeamWrongCount}
                           </h3>
-                        ) : null}
+                        </div>
                       </div>
+
+                      <hr />
+
+                      <div>
+                        <div className="container">
+                          <h3>
+                            Kırmızı Takım - {location.state.secondUserName}
+                          </h3>
+                        </div>
+                        <div className="container">
+                          <h3>
+                            Doğru: {redTeamPoint} - Yanlış: {redTeamWrongCount}
+                          </h3>
+                        </div>
+                      </div>
+
+                      {location.state.totalUser === 3 ? <hr /> : null}
+
+                      {location.state.totalUser === 3 ? (
+                        <div className="container">
+                          <div>
+                            <div className="container">
+                              <h3>
+                                Yeşil Takım - {location.state.thirdUserName}
+                              </h3>
+                            </div>
+                            <div className="container">
+                              <h3>
+                                Doğru: {greenTeamPoint} - Yanlış:{' '}
+                                {greenTeamWrongCount}
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                      ) : null}
                     </div>
                   )}
                 </div>

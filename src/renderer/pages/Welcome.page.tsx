@@ -47,8 +47,7 @@ function WelcomePage() {
       <div className="container">
         <img width="200px" alt="icon" src={icon} />
       </div>
-
-      <h1>Berke Kırbaş - Ahmet Furkan Akçakaya tarafından yapılmıştır.</h1>
+      <h1>Berke Kırbaş ve Ahmet Furkan Akçakaya tarafından hazırlanmıştır</h1>
       <form onSubmit={toDirect}>
         <div className="container">
           <Input

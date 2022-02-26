@@ -1,7 +1,7 @@
 const KEYBOARD_KEYS = {
-  MAVI_TAKIM: 'ü',
-  KIRMIZI_TAKIM: 'ğ',
-  YESIL_TAKIM: 'p',
+  MAVI_TAKIM: '3',
+  KIRMIZI_TAKIM: '2',
+  YESIL_TAKIM: '1',
 };
 
 export default KEYBOARD_KEYS;
