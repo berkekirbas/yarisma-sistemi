@@ -449,7 +449,7 @@ function GamePage() {
                                               {isTimerStartedForAnswer ? (
                                                 <>{timerForAnswer}</>
                                               ) : (
-                                                'Yarışmaya Devam Et'
+                                                'Yarışmaya Devam Etmek İçin Devam Et Butonuna Basın'
                                               )}
                                             </h3>
                                           </div>
